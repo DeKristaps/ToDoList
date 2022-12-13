@@ -1,0 +1,168 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "settings": {
+        "import/resolver": {
+          "typescript": true,
+          "node": true
+        }
+      },
+      "plugins": ["import"],
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended",
+        "plugin:import/recommended",
+        "plugin:import/typescript"
+      ],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "padding-line-between-statements": [
+          "error",
+          {
+            "blankLine": "always",
+            "prev": "*",
+            "next": [
+              "multiline-block-like",
+              "return",
+              "if",
+              "block",
+              "block-like",
+              "const",
+              "let",
+              "class",
+              "function"
+            ]
+          },
+          {
+            "blankLine": "always",
+            "prev": [
+              "multiline-block-like",
+              "return",
+              "if",
+              "block",
+              "block-like",
+              "const",
+              "let",
+              "class",
+              "function"
+            ],
+            "next": "*"
+          },
+          {
+            "blankLine": "never",
+            "prev": ["const"],
+            "next": ["const"]
+          },
+          {
+            "blankLine": "never",
+            "prev": ["let"],
+            "next": ["let"]
+          }
+        ],
+        "prettier/prettier": [
+          "error",
+          {
+            "printWidth": 100,
+            "bracketSpacing": true
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "alphabetize": {
+              "caseInsensitive": true,
+              "order": "asc"
+            },
+            "groups": ["external", "builtin", "parent", ["sibling", "index"]],
+            "newlines-between": "always",
+            "pathGroups": [
+              {
+                "group": "external",
+                "pattern": "@environments/**",
+                "position": "before"
+              },
+              {
+                "group": "external",
+                "pattern": "@angular/**",
+                "position": "before"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": ["builtin"]
+          }
+        ],
+        "@typescript-eslint/member-ordering": [
+          "warn",
+          {
+            "default": {
+              "memberTypes": [
+                "public-decorated-method",
+                "public-decorated-field",
+                "protected-decorated-field",
+                "private-decorated-field",
+
+                "public-field",
+                "public-static-field",
+                "public-instance-field",
+                "public-abstract-field",
+
+                "static-field",
+                "instance-field",
+                "abstract-field",
+
+                "private-field",
+                "private-static-field",
+                "private-instance-field",
+                "private-abstract-field",
+
+                "protected-field",
+                "protected-static-field",
+                "protected-instance-field",
+                "protected-abstract-field",
+
+                "constructor",
+                "public-method",
+                "public-static-method",
+                "private-method",
+                "private-static-method",
+                "protected-method",
+                "protected-static-method",
+                "private-decorated-method"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    }
+  ]
+}
