@@ -1,0 +1,48 @@
+<section class="to-do-section">
+  <h1 class="to-do-title">To Do List</h1>
+  <div class="to-do-container">
+    <div class="to-do">
+      <div class="to-do-actions">
+        <input [(ngModel)]="inputValue"
+               (keydown.enter)="addTask()"
+               autofocus
+               class="task-input"
+               type="text"
+               placeholder="Add new task..." />
+        <button (click)="addTask()" class="add-button">Add</button>
+      </div>
+      <div class="to-do-tasks">
+        <div class="to-do-task"
+             *ngFor="let task of toDo; let i = index">
+          <input [(ngModel)]="task.done" type="checkbox" />
+          <p class="display-task" [ngClass]="{ checked: task.done}">
+            {{ task.text }}
+          </p>
+          <button (click)="deleteTask(i)" class="delete-button">
+            <div class="trash-button">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M14 6h3v2H3V6h3V3c0-.55228.44772-1 1-1h6c.5523 0 1 .44772 1 1v3zm-9 4h10v8H5v-8zm2 6h6v-4H7v4zm5-10V4H8v2h4z"></path>
+              </svg>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div *ngIf="toDo.length > 0" class="task-tracker">
+          <p class="tracker">
+            {{ doneTasks }}
+          </p>
+          <button class="clear-button" (click)="clearTasks()">
+            Clear all
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
